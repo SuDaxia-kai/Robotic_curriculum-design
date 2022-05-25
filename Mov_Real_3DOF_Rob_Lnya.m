@@ -16,7 +16,7 @@ L5=50;
 
 th=[0,0,0,0,0,0]';   %数组
 
-MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),th(6),0); 
+MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),0); 
 view(134,12);
 pause;
 stp=5;   %关节步进值

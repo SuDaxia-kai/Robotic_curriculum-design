@@ -38,10 +38,18 @@ for i=2:7
         DrawCylinder(Link(i).p, Link(i).R * Link(i).az, radius,len, joint_col); hold on;
       elseif i == 7
         Connect3D(Link(i-1).p,Link(i).p,'b',2); hold on;
+        x=Link(i).p(1);
+        y=Link(i).p(2);
+        z=Link(i).p(3);
       else
         Connect3D(Link(i-1).p,Link(i).p,'b',2); hold on;
         DrawCylinder(Link(i-1).p, Link(i-1).R * Link(i).az, radius,len, joint_col); hold on;
       end
+%     if i == 7
+%         x=Link(i).p(1);
+%         y=Link(i).p(2);
+%         z=Link(i).p(3);
+%     end
 end
 
 grid on;
