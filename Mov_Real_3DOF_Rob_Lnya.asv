@@ -16,7 +16,7 @@ L5=50;
 
 th=[0,0,0,0,0,0]';   %数组
 
-MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),0); 
+MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th0); 
 view(134,12);
 pause;
 stp=5;   %关节步进值
@@ -24,7 +24,7 @@ spd=10; %电机速度（最大为10）
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint1
 for i=0:stp:90
     th(1)=i;
-    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %     jnt=Sj2Rj(th);   % 把仿真的角度转换成实际关节角
 %     for n = 1:1:6
 %         sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -35,10 +35,10 @@ end
 
 for i=90:-stp:0
     if i==0
-        MDHfk3Dof_Lnya(i,th(2),th(3),th(4),th(5),0);  
+        MDHfk3Dof_Lnya(i,th(2),th(3),th(4),0);  
     else
         th(1)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %         jnt=Sj2Rj(th);
 %         for n = 1:1:6
 %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -51,7 +51,7 @@ pause(0.2);
 
 for i=0:-stp:-90
     th(2)=i;
-    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %     jnt=Sj2Rj(th);
 %     for n = 1:1:6
 %         sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -62,10 +62,10 @@ end
 for i=-90:stp:0
     if i==0
         th(2)=i;
-        MDHfk3Dof_Lnya(th(1),i,th(3),th(4),th(5),0); 
+        MDHfk3Dof_Lnya(th(1),i,th(3),th(4),0); 
     else
         th(2)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %         jnt=Sj2Rj(th);
 %         for n = 1:1:6
 %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -79,7 +79,7 @@ pause(0.2);
 
 for i=0:-stp:-90
     th(3)=i;
-    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %     jnt=Sj2Rj(th);
 %     for n = 1:1:6
 %         sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -91,10 +91,10 @@ pause(0.1);
 for i=-90:stp:90
     if i==90
         th(3)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),i,th(4),th(5),0); 
+        MDHfk3Dof_Lnya(th(1),th(2),i,th(4),0); 
     else
         th(3)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %         jnt=Sj2Rj(th);
 %         for n = 1:1:6
 %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -106,7 +106,7 @@ end
 
 for i=0:-stp:-90
     th(4)=i;
-    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %     jnt=Sj2Rj(th);
 %     for n = 1:1:6
 %         sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
@@ -115,41 +115,13 @@ for i=0:-stp:-90
 end
 pause(0.1);
 
-for i=-90:stp:0
+for i=-90:stp:90
     if i==90
         th(4)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),i,th(5),0); 
+        MDHfk3Dof_Lnya(th(1),th(2),th(3),i,0); 
     else
         th(4)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
-%         jnt=Sj2Rj(th);
-%         for n = 1:1:6
-%             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-%             fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-%         end
-    end
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint5
-
-for i=0:-stp:-90
-    th(5)=i;
-    MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
-%     jnt=Sj2Rj(th);
-%     for n = 1:1:6
-%         sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-%         fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-%     end
-end
-pause(0.1);
-
-for i=-90:stp:0
-    if i==90
-        th(5)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),i,0); 
-    else
-        th(5)=i;
-        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
+        MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),1); 
 %         jnt=Sj2Rj(th);
 %         for n = 1:1:6
 %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）

@@ -1,4 +1,4 @@
-function pic=MDHfk3Dof_Lnya(th1,th2,th3,th4,fcla)
+function pic=MDHfk3Dof_Lnya(th1,th2,th3,th4,th5,fcla)
 % close all
 
 global Link
@@ -20,13 +20,14 @@ joint_col = 0;
  Link(3).th=Link(3).th+th2*pi/180;
  Link(4).th=Link(4).th+th3*pi/180;
  Link(5).th=Link(5).th+th4*pi/180;
+ Link(7).th=Link(7).th+th5*pi/180;
 
 
-for i=1:7
+for i=1:8
     Matrix_MDH_Ln(i);
 end
 
-for i=2:7
+for i=2:8
       Link(i).A=Link(i-1).A*Link(i).A;
       Link(i).p= Link(i).A(:,4);
       Link(i).n= Link(i).A(:,1);
