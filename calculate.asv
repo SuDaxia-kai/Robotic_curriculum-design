@@ -42,7 +42,7 @@ T524 = qiuni(total(17:20,:));
 
 tt = T120*E*Te2p;
 E1 = eye(4);
-for j = 3:1:4
+for j = 3:1:5
     E1 = E1*total(4*(j-1)+1:j*4,:);
 end
 E1
@@ -51,13 +51,13 @@ T02e = [nx ox ax px;
         ny oy ay py;
         nz oz az pz;
         0  0  0  1];
-final = (T322*(T120*T02e*Te2p)*Tp25)*T524
+final = (T322*(T120*T02e*Te2p)*Tp25)
 
 
 pose = eye(3);
-px = 15;
-py = 74;
-pz = 262.5
+px = 25;
+py = 0;
+pz = 237.5
 [th1,th2,th3,th4,th5] = reverse_5(pose,px,py,pz)
 
 

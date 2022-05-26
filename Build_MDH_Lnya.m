@@ -15,7 +15,7 @@ Link(4) = struct('name','J3' , 'th',  0*ToRad, 'dz', 0, 'dx', 43, 'alf',0*ToRad,
 Link(5) = struct('name','J4' , 'th',  90*ToRad, 'dz', 0, 'dx', 0, 'alf',90*ToRad,'az',UZ);          %4 TO 5
 Link(6) = struct('name','J5' , 'th',  0*ToRad, 'dz', 45.5, 'dx', 0, 'alf',0*ToRad,'az',UZ);          %5 TO 5
 Link(7) = struct('name','paw' , 'th',  90*ToRad, 'dz', 50, 'dx', 0, 'alf',90*ToRad,'az',UZ);          %5 TO paw
-Link(8) = struct('name','E' , 'th',  0*ToRad, 'dz', 50, 'dx', 0, 'alf',0*ToRad,'az',UZ);          %paw TO E
+Link(8) = struct('name','E' , 'th',  0*ToRad, 'dz', 25, 'dx', 0, 'alf',0*ToRad,'az',UZ);          %paw TO E
 
 % 
 %       Link1             Link2
