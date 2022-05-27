@@ -14,13 +14,14 @@ L3=100;
 L4=100;
 L5=50;
 
-th=[0,0,0,0,0,0]';   %数组
+th=[35,25,35,15,80,0]';   %数组
 
 MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),0); 
 view(134,12);
 pause;
 stp=5;   %关节步进值
 spd=10; %电机速度（最大为10）
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint1
 for i=0:stp:90
     th(1)=i;
@@ -61,8 +62,8 @@ for i=0:-stp:-90
 %     end
 end
 
-for i=-90:stp:0
-    if i==0
+for i=-90:stp:20
+    if i==20
         th(2) = i;
         MDHfk3Dof_Lnya(th(1),i,th(3),th(4),th(5),0); 
     else
@@ -118,7 +119,7 @@ end
 pause(0.1);
 
 for i=-90:stp:0
-    if i==90
+    if i==0
         th(4)=i;
         MDHfk3Dof_Lnya(th(1),th(2),th(3),i,th(5),0); 
     else
