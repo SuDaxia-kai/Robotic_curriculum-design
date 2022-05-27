@@ -1,6 +1,6 @@
 clear;
 clc;
-syms C1 S1 C2 S2 C3 S3 C4 S4 C45 S45 C5 S5
+syms C1 S1 C2 S2 C3 S3 C4 S4 C5 S5
 syms d1 d2 d3 d4 d5 d6 d7
 syms a1 a2 a3 a4 a5 a6 a7
 syms nx ny nz ox oy oz ax ay az px py pz
@@ -35,15 +35,14 @@ end
 
 
 Te2p = qiuni(total(25:28,:));
-T120 = qiuni(total(1:4,:));
+T221 = qiuni(total(1:4,:));
 Tp25 = qiuni(total(21:24,:));
 T322 = qiuni(total(5:8,:));
 T524 = qiuni(total(17:20,:));
 
-tt = T120*E*Te2p;
 E1 = eye(4);
-for j = 3:1:5
-    E1 = E1*total(4*(j-1)+1:j*4,:);
+for k = 2:1:6
+    E1 = E1*total(4*(k-1)+1:k*4,:);
 end
 E1
 
@@ -51,13 +50,16 @@ T02e = [nx ox ax px;
         ny oy ay py;
         nz oz az pz;
         0  0  0  1];
-final = (T322*(T120*T02e*Te2p)*Tp25)
+final = T221*T02e*Te2p
 
 
-pose = eye(3);
-px = 25;
-py = 0;
-pz = 237.5
-[th1,th2,th3,th4,th5] = reverse_5(pose,px,py,pz)
+
+% pose = [0.0872, -0.9962, 0 ;
+%        -0.9962, -0.0872, 0 ;
+%              0,       0,-1 ];
+% px = -137.973;
+% py = -12.0711;
+% pz = 74;
+% [th1,th2,th3,th4,th5] = reverse_5(pose,px,py,pz)
 
 
