@@ -1,13 +1,15 @@
 clear;
 clc;
 %% 设置串口
-motorCom=5;  %设置串口编号，请检查设备管理器确认
+motorCom=4;  %设置串口编号，请检查设备管理器确认
 Mcom=Com_On(motorCom); %开串口，Mcom为串口结构体，波特率默认9600
 fprintf('Com %d Open \n', motorCom);   %打印显示串口打开成功，如果失败程序将会一直开在这里
 
 %% 捕捉人脸
 ToDeg = 180/pi;
 ToRad = pi/180;
+stp=5;   %关节步进值
+spd=10; %电机速度（最大为10）
 faceDetector = vision.CascadeObjectDetector(); % 调用MatLab中的VJ算法
 bbox = [100 100 100 100];
 
@@ -26,7 +28,7 @@ vidWidth = vidInfo.MaxWidth;
 videoPlayer = vision.VideoPlayer('Position',[300 100 640+30 480+30]);
 
 %% 开始对摄像头的图像进行操作
-MDHfk3Dof_Lnya(0,0,-90,0,0,0); 
+MDHfk3Dof_Lnya(0,0,90,0,0,0); 
 pause;
 for k = 1:Frame 
     videoFrame = step(vidDevice); % 显示我们摄像头拍的图像
@@ -37,10 +39,10 @@ for k = 1:Frame
     s_temp_size = size(bbox);
     % 开始跟踪人脸
     if  s_temp_size ~= [0,0]
-        centre = [320,240];
+        centre = [335,240];
         face_centre = [(bbox(1)+bbox(3))*0.5,(bbox(2)+bbox(4))];
-        th1 = (face_centre(1)-320)*90/320;
-        th3 = -(face_centre(2)-240)*90/240 - 60;
+        th1 = -(face_centre(1)-335)*90/335;
+        th3 = (face_centre(2)-240)*90/240+35;
         MDHfk3Dof_Lnya(th1,0,th3,0,0,1); 
         th = [th1,0,th3,0,0,0];
         jnt=Sj2Rj(th);
