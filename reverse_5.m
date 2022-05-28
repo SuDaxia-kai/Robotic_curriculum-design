@@ -1,4 +1,4 @@
-function [th1,th2,th3,th4,th5]=reverse_5(pose,px,py,pz)
+function [th1,rth2,th3,th4,th5]=reverse_5(pose,px,py,pz)
 
 ToDeg = 180/pi;
 ToRad = pi/180;
@@ -30,8 +30,8 @@ h = 50*cos(th234);
 
 zanshi = ((C1*px+S1*py-g)^2+(t+h)^2-5000)/5000;
 % th3 有多解
-th3 = atan2(sqrt(1-zanshi^2),zanshi);
-% th3 = -atan2(sqrt(1-zanshi^2),zanshi);
+% th3 = atan2(sqrt(1-zanshi^2),zanshi);
+th3 = -atan2(sqrt(1-zanshi^2),zanshi);
 
 %% 再次从3中解方程，得th2
 S3 = sin(th3);
@@ -42,10 +42,19 @@ S2 = ((t+h)*(50*C3+50)-50*S3*(C1*px+S1*py-g))/((50*C3+50)^2 + (50*S3)^2);
 th2 = atan2(S2,C2);
 
 %% 将角度进行转换，th4 = th234 - th2 - th3
-th1 = round(th1 * ToDeg) + 180;
-th2 = 90 - round(th2 * ToDeg);
-th234 = 180 - round(th234 * ToDeg);
+th1 = round(th1 * ToDeg);
+if th1 < -90
+    th1 = th1 +180;
+elseif th1 > 90
+    th1 = th1 -180;
+end
+rth2 = round(th2 * ToDeg) - 90;
+th234 = round(th234 * ToDeg);
 th3 = round(th3 * ToDeg);
-th4 = th234 - th3 -th2;
-th5 = round(th5 * ToDeg)+90;
+th4 = th234 - th3 - round(th2 * ToDeg) - 90;
+th5 = round(th5 * ToDeg) - 90;
+if th5 < -90
+    th5 = th5 +180;
+elseif th5 > 90
+    th5 = th5 -180;
 end
