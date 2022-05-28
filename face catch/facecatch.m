@@ -1,5 +1,13 @@
 clear;
 clc;
+%% 设置串口
+% motorCom=5;  %设置串口编号，请检查设备管理器确认
+% Mcom=Com_On(motorCom); %开串口，Mcom为串口结构体，波特率默认9600
+% fprintf('Com %d Open \n', motorCom);   %打印显示串口打开成功，如果失败程序将会一直开在这里
+
+%% 捕捉人脸
+ToDeg = 180/pi;
+ToRad = pi/180;
 faceDetector = vision.CascadeObjectDetector(); % 调用MatLab中的VJ算法
 bbox = [100 100 100 100];
 
@@ -23,5 +31,15 @@ for k = 1:Frame
     bbox = 4 * faceDetector.step(imresize(videoFrame, 1/4)) 
     videoOut = step(boxInserter, videoFrame, bbox);
     %release(boxInserter);
-    step(videoPlayer, videoOut); 
+    step(videoPlayer, videoOut);
+    s_temp_size = size(bbox);
+    % 开始跟踪人脸
+    if  s_temp_size ~= [0,0]
+        centre = [320,240];
+        face_centre = [(bbox(1)+bbox(3))*0.5,(bbox(2)+bbox(4))];
+        th1 = (face_centre(1)-320)*90/320;
+        th3 = -(face_centre(2)-240)*90/240;
+        MDHfk3Dof_Lnya(th1,0,th3-90,0,0,1); 
+    end
 end
+Com_Off(Mcom);  %重要，必须和Com_On一起配套使用，否者下次申请打开串口将会提示占用
