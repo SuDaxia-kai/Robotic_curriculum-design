@@ -17,8 +17,11 @@ vidDevice = imaq.VideoDevice('winvideo', 1, 'YUY2_640x480', ...
     'ROI', [1 1 640 480], ...
     'ReturnedColorSpace', 'rgb' );
 
+% 设置框住人脸的矩形颜色
 boxInserter = vision.ShapeInserter('BorderColor','Custom',...
     'CustomBorderColor',[255 255 0]);
+
+% 在图片中加入文字信息
 textInserter = vision.TextInserter('%d','LocationSource','Input port','Color',[255,255, 0],'FontSize',12);
 
 Frame =3000;   % 设置执行帧数为300帧

@@ -37,7 +37,7 @@ T524 = qiuni(total(13:16,:));
 T423 = qiuni(total(9:12,:));
 
 E1 = eye(4);
-for k = 2:1:6
+for k = 2:1:5
     E1 = E1*total(4*(k-1)+1:k*4,:);
 end
 E1 = simplify(E1)
