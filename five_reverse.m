@@ -1,9 +1,9 @@
 close all;
 clear;
 
-% motorCom=5;  %设置串口编号，请检查设备管理器确认
-% Mcom=Com_On(motorCom); %开串口，Mcom为串口结构体，波特率默认9600
-% fprintf('Com %d Open \n', motorCom);   %打印显示串口打开成功，如果失败程序将会一直开在这里
+motorCom=4;  %设置串口编号，请检查设备管理器确认
+Mcom=Com_On(motorCom); %开串口，Mcom为串口结构体，波特率默认9600
+fprintf('Com %d Open \n', motorCom);   %打印显示串口打开成功，如果失败程序将会一直开在这里
 
 ToDeg = 180/pi;
 ToRad = pi/180;
@@ -49,11 +49,11 @@ for times = 1:1:1
     for i_1 = i_1: realstp :solution(times,1)
         th(1) = i_1;
         MDHfk3Dof_Lnya(i_1,th(2),th(3),th(4),th(5),1); 
-    %     jnt=Sj2Rj(th);   % 把仿真的角度转换成实际关节角
-    %     for n = 1:1:6
-    %         sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-    %         fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-    %     end
+        jnt=Sj2Rj(th);   % 把仿真的角度转换成实际关节角
+        for n = 1:1:6
+            sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
+            fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
+        end
     end
     pause(0.2);
 
@@ -66,11 +66,11 @@ for times = 1:1:1
         else
             th(2)=i_2;
             MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
-    %         jnt=Sj2Rj(th);
-    %         for n = 1:1:6
-    %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-    %             fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-    %         end
+            jnt=Sj2Rj(th);
+            for n = 1:1:6
+                sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
+                fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
+            end
         end
     end
     pause(0.2);
@@ -84,11 +84,11 @@ for times = 1:1:1
         else
             th(3) = i_3;
             MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
-    %         jnt=Sj2Rj(th);
-    %         for n = 1:1:6
-    %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-    %             fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-    %         end
+            jnt=Sj2Rj(th);
+            for n = 1:1:6
+                sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
+                fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
+            end
         end
     end
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint4
@@ -100,11 +100,11 @@ for times = 1:1:1
         else
             th(4)=i_4;
             MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
-    %         jnt=Sj2Rj(th);
-    %         for n = 1:1:6
-    %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-    %             fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-    %         end
+            jnt=Sj2Rj(th);
+            for n = 1:1:6
+                sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
+                fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
+            end
         end
     end
 
@@ -121,11 +121,11 @@ for times = 1:1:1
         else
             th(5)=i_5;
             MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),1); 
-    %         jnt=Sj2Rj(th);
-    %         for n = 1:1:6
-    %             sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
-    %             fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
-    %         end
+            jnt=Sj2Rj(th);
+            for n = 1:1:6
+                sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
+                fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
+            end
         end
     end
 end
@@ -133,10 +133,10 @@ end
 pause(2);
 MDHfk3Dof_Lnya(solution(2,1),solution(2,2),solution(2,3),solution(2,4),solution(2,5),1);
 MDHfk3Dof_Lnya(solution(2,1),solution(2,2),solution(2,3),solution(2,4),solution(2,5),0);
-jnt=Sj2Rj(solution(2));
+jnt=Sj2Rj(solution(2,1:6));
 for n = 1:1:6
     sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
     fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
 end
 %关闭串口
-% Com_Off(Mcom);  %重要，必须和Com_On一起配套使用，否者下次申请打开串口将会提示占用
+Com_Off(Mcom);  %重要，必须和Com_On一起配套使用，否者下次申请打开串口将会提示占用

@@ -42,7 +42,7 @@ for k = 1:Frame
         centre = [335,240];
         face_centre = [(bbox(1)+bbox(3))*0.5,(bbox(2)+bbox(4))];
         th1 = -(face_centre(1)-335)*90/335;
-        th3 = (face_centre(2)-240)*90/240+35;
+        th3 = (face_centre(2)-240)*90/240+40;
         MDHfk3Dof_Lnya(th1,0,th3,0,0,1); 
         th = [th1,0,th3,0,0,0];
         jnt=Sj2Rj(th);

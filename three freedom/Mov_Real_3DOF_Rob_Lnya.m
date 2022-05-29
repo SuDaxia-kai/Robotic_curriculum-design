@@ -1,7 +1,7 @@
 close all;
 clear;
 
-motorCom=10;  %设置串口编号，请检查设备管理器确认
+motorCom=4;  %设置串口编号，请检查设备管理器确认
 Mcom=Com_On(motorCom); %开串口，Mcom为串口结构体，波特率默认9600
 fprintf('Com %d Open \n', motorCom);   %打印显示串口打开成功，如果失败程序将会一直开在这里
 
