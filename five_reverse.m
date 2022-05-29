@@ -33,8 +33,13 @@ pause;
 stp=5;   %关节步进值
 spd=10; %电机速度（最大为10）
 
+% for times = 1:2
+%     MDHfk3Dof_Lnya(solution(times,1),solution(times,2),solution(times,3),solution(times,4),solution(times,5),1);
+%     MDHfk3Dof_Lnya(solution(times,1),solution(times,2),solution(times,3),solution(times,4),solution(times,5),0);
+%     pause(2);
+% end
 i_1 = 0; i_2 = 0; i_3 = 0; i_4 = 0; i_5 = 0;
-for times = 1:1:2
+for times = 1:1:1
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint1
     if solution(times,1)-i_1 == 0
         realstp = 0;
@@ -126,5 +131,12 @@ for times = 1:1:2
 end
 
 pause(2);
+MDHfk3Dof_Lnya(solution(2,1),solution(2,2),solution(2,3),solution(2,4),solution(2,5),1);
+MDHfk3Dof_Lnya(solution(2,1),solution(2,2),solution(2,3),solution(2,4),solution(2,5),0);
+jnt=Sj2Rj(solution(2));
+for n = 1:1:6
+    sendbuf =  JointCmd(n, spd,jnt(n));% 生成对应关节的控制指令（编号，速度（1-20），目标角度）
+    fwrite(Mcom,sendbuf,'uint8');%向串口发送关节控制指令
+end
 %关闭串口
 % Com_Off(Mcom);  %重要，必须和Com_On一起配套使用，否者下次申请打开串口将会提示占用
