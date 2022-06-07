@@ -14,19 +14,19 @@ L3=100;
 L4=100;
 L5=50;
 
-th=[0,0,0,0,0,0]';   %数组
+th=[35,75, 80,70,40,0]';   %数组
 solution = [35,-75, 45,-60,40,0;
             35,-30,-45,-15,40,0;
             ]; % 储存机械臂单点解的数组
-
+global Link;
 MDHfk3Dof_Lnya(th(1),th(2),th(3),th(4),th(5),0); 
-% final_A = Link(8).A;
-% 
-% pose = final_A(1:3,1:3);
-% px = final_A(1,4);
-% py = final_A(2,4);
-% pz = final_A(3,4);
-% [t1,t2,t3,t4,t5] = reverse_5(pose,px,py,pz)
+final_A = Link(8).A;
+
+pose = final_A(1:3,1:3);
+px = final_A(1,4);
+py = final_A(2,4);
+pz = final_A(3,4);
+[t1,t2,t3,t4,t5] = reverse_5(pose,px,py,pz)
 
 view(134,12);
 pause;

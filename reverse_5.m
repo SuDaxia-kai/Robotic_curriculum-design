@@ -13,8 +13,16 @@ ox = o(1); oy = o(2); oz = o(3);
 
 %% 根据矩阵 T2to6 对应关系，反变换求th1与th5
 th1 = atan2(py,px);
-th5 = atan2(sin(th1)*n(1)-cos(th1)*n(2),cos(th1)*a(2)-sin(th1)*a(1));
 
+if th1 < -pi/2
+    th1 = th1 + pi;
+elseif th1 > pi/2
+    th1 = th1 - pi;
+else
+    th1 = th1;
+end
+
+th5 = atan2(sin(th1)*n(1)-cos(th1)*n(2),cos(th1)*a(2)-sin(th1)*a(1));
 %% 根据 T2to5 对应关系，反变换求th234
 C1 = cos(th1);
 S1 = sin(th1);
@@ -30,8 +38,8 @@ h = 50*cos(th234);
 
 zanshi = ((C1*px+S1*py-g)^2+(t+h)^2-5000)/5000;
 % th3 有多解
-% th3 = atan2(sqrt(1-zanshi^2),zanshi);
-th3 = -atan2(sqrt(1-zanshi^2),zanshi);
+th3 = atan2(sqrt(1-zanshi^2),zanshi);
+% th3 = -atan2(sqrt(1-zanshi^2),zanshi);
 
 %% 再次从3中解方程，得th2
 S3 = sin(th3);
@@ -43,15 +51,15 @@ th2 = atan2(S2,C2);
 
 %% 将角度进行转换，th4 = th234 - th2 - th3
 th1 = round(th1 * ToDeg);
-if th1 < -90
-    th1 = th1 +180;
-elseif th1 > 90
-    th1 = th1 -180;
-end
 rth2 = round(th2 * ToDeg) - 90;
-th234 = round(th234 * ToDeg);
+% th234 = round(th234 * ToDeg)-180
 th3 = round(th3 * ToDeg);
-th4 = th234 - th3 - round(th2 * ToDeg) - 90;
+th4 = th234 - rth2 - th3;
+if th4 < -pi
+    th4 = th4 + 360;
+elseif th4 > pi
+    th4 = th4 - 360;
+end
 th5 = round(th5 * ToDeg) - 90;
 if th5 < -90
     th5 = th5 +180;
